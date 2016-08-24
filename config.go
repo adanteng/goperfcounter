@@ -74,7 +74,7 @@ func defaultConfig() GlobalConfig {
 		Tags:     defaultTags,
 		Step:     defaultStep,
 		Bases:    defaultBases,
-		Push:     defaultPush,
+		Push:     defaultPushConfig(),
 		Http:     defaultHttp,
 	}
 }
@@ -141,6 +141,16 @@ func parseConfig(cfg string) (GlobalConfig, error) {
 func defaultHostname() string {
 	hostname, _ := os.Hostname()
 	return hostname
+}
+
+// Caution!!! Only work in dockers.
+func defaultPushConfig() *PushConfig {
+	hostIP := os.Getenv("HostIP")
+	if hostIP == "" {
+		return defaultPush
+	}
+	fmt.Println("got hostip", hostIP)
+	return &PushConfig{Enabled: true, Api: fmt.Sprintf("http://%s:1988/v1/push", hostIP)}
 }
 
 func isFileExist(fn string) bool {
