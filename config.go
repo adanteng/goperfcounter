@@ -149,7 +149,6 @@ func defaultPushConfig() *PushConfig {
 	if hostIP == "" {
 		return defaultPush
 	}
-	fmt.Println("got hostip", hostIP)
 	return &PushConfig{Enabled: true, Api: fmt.Sprintf("http://%s:1988/v1/push", hostIP)}
 }
 
