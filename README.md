@@ -1,6 +1,8 @@
 GoPerfcounter
 ==========
 
+docker是云服务器平台自动分配，有统一的获取hostip的方法，这里集成进该sdk
+
 goperfcounter用于golang应用的业务监控。goperfcounter需要和开源监控系统[Open-Falcon](http://book.open-falcon.com/zh/index.html)一起使用。
 
 概述
